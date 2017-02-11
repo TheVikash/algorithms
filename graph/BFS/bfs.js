@@ -41,3 +41,13 @@ let graph  = {
 
 let result = breadthFirstSearch(graph);
 console.log('\x1b[31m',result,'\x1b[0m')
+
+
+// breadth first search is a search algorithm to traverse all the connected node and find its actual distance from the source.
+// the first part is to represent the graph in adjacent list.\
+// the second part is to make an array of object of all vertices.
+// assign some properties into that object such as its distance and is it already traversed or not.
+// then pass the source element into the queue 
+// then start the loop until queue become empty 
+// now deque the ele and enque all element which is directly connected to it and make changes to its properties accordingly.
+// now enjoy
