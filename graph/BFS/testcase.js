@@ -1,72 +1,3 @@
-
-
-function processData(input) {
-    let splitInput = input.split('\n');
-    let items =  parseInt(splitInput.splice(0,1));
-    for(let i = 0; i < items; i++ ){
-        let veSplit = splitInput.splice(0,1)[0].split(' ');
-        let vertex = parseInt(veSplit[0]);
-        let edges = parseInt(veSplit[1]);
-        let track = trackingVertex(vertex);
-        let adjListData = splitInput.splice(0,edges);
-        let adjacentList = getAdjList(adjListData, vertex);
-        let source = splitInput.splice(0,1);
-        let output = bfs(source,track,adjacentList );
-        for(let j = 1 ; j <= vertex; j++){
-            if(j != source){
-                process.stdout.write(output[j].d + ' ');
-            }
-        }
-        process.stdout.write('\n');
-    }
-}
-
-function trackingVertex(num){
-    let trackVertex = {};
-    for(let i = 0; i < num; i++){
-        trackVertex[i+1] = {
-            color : 'w',
-            d : -1,
-        }
-    }
-    console.log('trackvertex ->',trackVertex);
-    return trackVertex;
-}
-
-function getAdjList(data , vertex){
-    let dataLength = data.length;
-    let adjList = {};
-    for(let i = 1; i <= vertex; i++){
-        adjList[i] = [];
-    }
-    for(let i = 0 ;  i < dataLength; i++){
-        let edge = data.splice(0,1)[0].split(' ');
-        adjList[edge[0]].push(edge[1]);
-        adjList[edge[1]].push(edge[0]);
-    }
-    console.log(adjList);
-    return adjList;
-} 
-
-function bfs(source, track, adjList){
-    let queue = [];
-    track[source].color = 'g';
-    track[source].d = 0;
-    queue.push(source);
-    while(queue.length != 0){
-        let deque = queue.shift();
-        for(let i = 0; i < adjList[deque].length; i++){
-            if(track[adjList[deque][i]].color === 'w'){
-                track[adjList[deque][i]].color = 'g';
-                 track[adjList[deque][i]].d = track[deque].d  + 6;
-                 queue.push(adjList[deque][i]);
-            }
-        }
-        track[deque].color = 'b';
-    }
-    return track;
-}
-
 let input = `2
 50 392
 1 44
@@ -2793,4 +2724,6 @@ let input = `2
 1 166
 151`;
 
-processData(input);
+//output
+// 6 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12
+// 6 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12
