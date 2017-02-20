@@ -1,3 +1,5 @@
+const input = require('./input1');
+
 function processData(input){
     input = input.split('\n');
     count = parseInt(input.shift());
@@ -6,57 +8,51 @@ function processData(input){
     console.log(output);
 }
 
-function computeCandies(arr,n){
+function computeCandies(a,n){
     let r = [];
-    for(let i = 0;  i < n; i++){
-        r.push(0);
+    for(let i = 0; i < n ; i++){
+        r.push(1);
     }
-    r[0] = 1;
-    let sum = 0;
-    for(let i = 1 ; i < n; i++){
-        if(arr[i] > arr[i-1]){
+
+    for(let i = 1; i < n; i++){
+        if(a[i] > a[i-1]){
             r[i] = r[i-1] + 1;
         }
-        else if(arr[i] <= arr[i-1]){
-            if(i !== n-1){
-                if(arr[i] < arr[i+1]){
-                    r[i] = 1;
-                }else{
-                    
-                }
-            }else{
-                r[i] = 1;
-            }
-            
-        }
-        
-
-        sum +=r[i-1];
     }
-    sum +=r[n-1];
-    console.log(arr);
-    console.log(r);
+
+    for(let i = n-2; i >=0; i--){
+        if(a[i] > a[i+1]){
+            if(r[i] <= r[i+1]){
+                r[i] = r[i+1] + 1;
+            }
+        }
+    }
+
+    let sum = 0;
+    for(let i = 0; i < n; i++){
+        sum += r[i];
+    }
+
     return sum;
 }
 
 
 
 
-let input = `13
-2
-4
-2
-6
-1
-7
-8
-9
-5
-4
+let input1 = `7
 3
 2
-1`;
-//output
-//19
+3
+4
+4
+4
+8`;
 
-processData(input);
+
+processData(input); 
+
+
+//this solution is very trivial dont use extra brain in applying all unneccassry conditions
+//this solution is having three steps, make an array of candies given to the student and assign one candy to each
+//then traverse from first to last and check if score of curretn student is greater than previous, if yes then assign then give him one candy more than previous one
+//then traverse from last to first and check if current student score is greater than next student if yes than check candies of current student is less than next student if yes than give one candy more.
