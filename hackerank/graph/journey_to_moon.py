@@ -4,9 +4,22 @@ import sys
 
 adjacentList = {}
 graph = {}
-def calculate():
+def calculate(N,nodes):
     count_list = dfs(graph)
-    return count_list
+    length = len(count_list)
+    sum = 0
+    for i in range(0,length):
+        sum = sum + count_list[i]
+    
+    sum = sum * (N - nodes)
+    
+
+    for i in range(0,length):
+        for j in range(0,length): 
+                sum = sum + count_list[j]*count_list
+
+    return sum
+
     
 def dfs(graph):
     count = []
@@ -26,14 +39,21 @@ def dfsvisit(graph,vertex,count):
 
 
 N,l = map(int,raw_input().split())
-for i in range(0,N):
-    graph[str(i)] = {}
-    graph[str(i)]['c'] = 'w'
-    adjacentList[str(i)] = []
- 
+
+nodes = 0
 for i in xrange(l):
     a,b = raw_input().split()
+    if(a not in graph):
+        nodes += 1 
+        graph[a] = {}
+        graph[a]['c'] = 'w'
+        adjacentList[a] = []
+    if(b not in graph):
+        nodes += 1 
+        graph[b] = {}
+        graph[b]['c'] = 'w'
+        adjacentList[b] = []
     adjacentList[a].append(b)
     adjacentList[b].append(a)
 
-    print calculate()
+print calculate(N,nodes)
