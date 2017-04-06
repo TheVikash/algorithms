@@ -1,6 +1,8 @@
 #!/bin/python
 
 import sys
+import psyco
+psyco.full()
 import math
 from collections import deque
 graph = []
@@ -26,7 +28,7 @@ def relax(adj,u):
     
 def returnAns(s,n):
     for i in range(0,n):
-        if i + 1 is not s:
+        if i + 1 != s and graph[ i ]['d'] != 0:
             print graph[ i ]['d'] if graph[i]['d'] != float('inf') else -1,
     print 
 
