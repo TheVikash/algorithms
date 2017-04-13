@@ -48,7 +48,7 @@ for i in xrange(t):
     for i in range(0,100):
         graph[str(i + 1)] = {}
         rangehigh = 0
-        if(i + 1 <= 94 ):
+        if(i + 1 <= 94 ):0
             rangehigh = 6
         else:
             rangehigh = 101 - (i + 2)
