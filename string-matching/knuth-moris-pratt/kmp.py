@@ -7,8 +7,8 @@ def KmpMatcher(T,P):
     q = 0
     for i in range(0,n):
         while q > 0 and P[q] != T[i]:
-            q = pi[q]
-        if P[q] == T[i] :
+            q = pi[q - 1]
+        if P[q] == T[i]:
             q = q + 1
 
         if q == m :
@@ -32,7 +32,7 @@ def computePrefix(P):
 
 
 
-p = 'ababaca'
-t = 'ababccccccababababdfksdjhfkjshdfkajdskababacahfkjsdhfkjdshfjdsh'
+p = 'aa'
+t = 'caaab'
 
 print KmpMatcher(t,p)
