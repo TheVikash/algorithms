@@ -21,4 +21,8 @@ def answer(xs):
 
 
 print answer([-1])
-print 
+print(answer([2,0,2,2,0]))
+print(answer([0,-1,-2,-3]))
+print(answer([0,-1,-2]))
+print(answer([0,-1,-2,-3]))
+print answer([0,-1,-2,-3,5,8,6,7,-5,1,2,3,4,-2,-4,-4])
